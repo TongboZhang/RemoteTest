@@ -59,7 +59,7 @@ with tf.name_scope('train'): #训练过程
 
 #初始化
 init = tf.global_variables_initializer()
-sess = tf.Session()
+sess = tf.Session(config=tf.ConfigProto(device_count={'gpu':0}))
 sess.run(init)
 merged = tf.summary.merge_all() #将图形、训练过程等数据合并在一起
 writer = tf.summary.FileWriter(TB_ROOT,sess.graph) #将训练日志写入到logs文件夹下
