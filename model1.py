@@ -5,8 +5,14 @@ Created on Fri Jun 21 14:40:58 2019
 @author: t-tozh
 """
 
+import os
 import tensorflow as tf
 import numpy as np
+
+#环境变量
+env_dist=os.environ
+TB_ROOT=env_dist['TB_ROOT']
+print TB_ROOT
 
 #输入数据
 x_data = np.linspace(-1,1,300)[:, np.newaxis]
@@ -56,7 +62,7 @@ init = tf.global_variables_initializer()
 sess = tf.Session()
 sess.run(init)
 merged = tf.summary.merge_all() #将图形、训练过程等数据合并在一起
-writer = tf.summary.FileWriter('logs',sess.graph) #将训练日志写入到logs文件夹下
+writer = tf.summary.FileWriter(TB_ROOT,sess.graph) #将训练日志写入到logs文件夹下
 
 #训练
 for i in range(1000):
