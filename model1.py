@@ -62,7 +62,7 @@ init = tf.global_variables_initializer()
 sess = tf.Session(config=tf.ConfigProto(device_count={'gpu':0}))
 sess.run(init)
 merged = tf.summary.merge_all() #将图形、训练过程等数据合并在一起
-writer = tf.summary.FileWriter('/mnt/data2/'+PAI_JOB_NAME,sess.graph) #将训练日志写入到logs文件夹下
+writer = tf.summary.FileWriter('/mnt/data/'+PAI_JOB_NAME,sess.graph) #将训练日志写入到logs文件夹下
 
 #训练
 for i in range(1000):
