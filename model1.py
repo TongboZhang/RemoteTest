@@ -11,8 +11,8 @@ import numpy as np
 
 #环境变量
 env_dist=os.environ
-TB_ROOT=env_dist['TB_ROOT']
-print TB_ROOT
+PAI_JOB_NAME=env_dist['PAI_JOB_NAME']
+print PAI_JOB_NAME
 
 #输入数据
 x_data = np.linspace(-1,1,300)[:, np.newaxis]
@@ -62,7 +62,7 @@ init = tf.global_variables_initializer()
 sess = tf.Session(config=tf.ConfigProto(device_count={'gpu':0}))
 sess.run(init)
 merged = tf.summary.merge_all() #将图形、训练过程等数据合并在一起
-writer = tf.summary.FileWriter(TB_ROOT,sess.graph) #将训练日志写入到logs文件夹下
+writer = tf.summary.FileWriter('/mnt/data2/'+PAI_JOB_NAME,sess.graph) #将训练日志写入到logs文件夹下
 
 #训练
 for i in range(1000):
